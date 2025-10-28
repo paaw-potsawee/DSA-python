@@ -160,6 +160,24 @@ class Tree:
             return self._search(root.left, key)
         return self._search(root.right, key)
 
+    def inorder_traverse(self, root:Node):
+        if root is not None:
+            self.inorder_traverse(root.left)
+            print(root)
+            self.inorder_traverse(root.right)
+
+    def preorder_traverse(self, root:Node):
+        if root is not None:
+            print(root)
+            self.preorder_traverse(root.left)
+            self.preorder_traverse(root.right)
+
+    def postorder_traverse(self, root:Node):
+        if root is not None:
+            self.postorder_traverse(root.left)
+            self.postorder_traverse(root.right)
+            print(root)
+
     def print_tree(self):
         root = self.root
         self._print(root, 0)
@@ -172,6 +190,9 @@ class Tree:
 
 if __name__ == "__main__":
     t1 = Tree()
+    lst = [20, 15,10,18, 30, 25,35, 27]
+    # for i in lst:
+    #     t1.insert(i)
     for i in [10, 15, 13, 5, 8, 20, 25, 6, 7, 4, 3, 11]:
         t1.insert(i)
     t1.print_tree()
@@ -179,6 +200,14 @@ if __name__ == "__main__":
     print('---- test search -----')
     print(t1.search(11))
     print(t1.search(12))
+
+    print('----- test traversal ------')
+    print('--- inorder -----')
+    t1.inorder_traverse(t1.root)
+    print('--- post-order -----')
+    t1.postorder_traverse(t1.root)
+    print('--- pre-order -----')
+    t1.preorder_traverse(t1.root)
 
     print('--- test deletion ----')
     print('--- delete 11')
